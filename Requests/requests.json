@@ -1,0 +1,17 @@
+{
+    "UserService": {
+        "query": "all users"
+    },
+    "CreateUser": {
+        "name": "Juan",
+        "email": "juan@example.com"
+    },
+    "UpdateUser": {
+        "id": 1,
+        "email": "juan_updated@example.com"
+    },
+    "DeleteUser": {
+        "id": 1
+    },
+    "OrderService": "<OrderRequest><OrderId>123</OrderId></OrderRequest>"
+}

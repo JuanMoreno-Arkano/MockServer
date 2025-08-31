@@ -1,0 +1,33 @@
+{
+    "Services": [
+        {
+            "Name": "UserService",
+            "Type": "REST",
+            "Url": "http://localhost:5001/users",
+            "Operation": "GET"
+        },
+        {
+            "Name": "CreateUser",
+            "Type": "REST",
+            "Url": "http://localhost:5002/users/create",
+            "Operation": "POST"
+        },
+        {
+            "Name": "UpdateUser",
+            "Type": "REST",
+            "Url": "http://localhost:5003/users/update",
+            "Operation": "PUT"
+        },
+        {
+            "Name": "DeleteUser",
+            "Type": "REST",
+            "Url": "http://localhost:5004/users/delete",
+            "Operation": "DELETE"
+        },
+        {
+            "Name": "OrderService",
+            "Type": "WCF",
+            "Url": "http://localhost:5005/orders"
+        }
+    ]
+}
