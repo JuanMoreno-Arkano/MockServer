@@ -1,82 +1,56 @@
-# POC Mock Servicios
+# Mock Servicios
 
-**Mock Servicios** es una aplicación independiente desarrollada en .NET que permite simular (mockear) servicios WCF y REST, incluyendo operaciones CRUD. Su objetivo principal es facilitar las pruebas y el desarrollo en entornos donde los servicios reales no están disponibles, promoviendo agilidad y flexibilidad para equipos de desarrollo y QA.
+## Descripción
+Mock Servicios es una aplicación independiente en .NET que permite simular servicios **WCF** y **REST** (incluyendo operaciones CRUD).  
+Está pensada para entornos de desarrollo y pruebas donde los servicios reales no están disponibles o cuando se desea desacoplar dependencias externas.
 
----
+## Características principales
+- Simulación de servicios WCF (XML) y REST (JSON).
+- Definición de servicios, requests y responses mediante archivos externos.
+- Identificación de servicios por nombre.
+- Ejecución dinámica sin necesidad de recompilar.
+- Compatible con múltiples servicios en paralelo.
+- Extensible y fácil de configurar.
 
-## ¿Cómo funciona?
+## Estructura del proyecto
+- **Config/**  
+  Contiene el archivo `services.json` con la definición de los servicios (nombre, puerto, tipo, URL).  
 
-- **Gestión mediante configuración:**  
-  Los servicios se definen en un archivo de configuración, donde se especifican su nombre, tipo (WCF/REST), puerto y URL.
-- **Requests y Responses externos:**  
-  Cada servicio cuenta con archivos externos que describen los requests y responses que se deben devolver, utilizando formato JSON para REST y XML para WCF.
-- **Identificación por nombre:**  
-  Al iniciar la aplicación, se selecciona el servicio a mockear indicando su nombre; automáticamente se levantan sus endpoints en el puerto definido.
-- **Ejecución dinámica:**  
-  No es necesario recompilar para agregar o modificar servicios. Basta con actualizar los archivos de configuración y de requests/responses.
+- **Core/**  
+  Incluye la lógica de negocio principal, interfaces, modelos y servicios de inicialización.  
 
----
+- **Requests/**  
+  Archivos con la definición de requests para cada servicio.  
 
-## ¿Cómo se usa?
+- **Responses/**  
+  Archivos con las respuestas asociadas a cada request.  
 
-1. Inicia la aplicación.
-2. Ingresa el nombre del servicio que deseas levantar.
-3. La aplicación lee la configuración, ubica el servicio y carga sus requests y responses desde los archivos externos.
-4. El servicio queda disponible en el puerto asignado, listo para ser consumido por cualquier aplicación cliente.
+- **Program.cs**  
+  Punto de entrada de la aplicación.
 
----
+## Cómo funciona
+1. La aplicación carga la configuración desde los archivos en la carpeta `Config`.
+2. Al iniciarse, se pide al usuario ingresar el nombre del servicio que se desea levantar.
+3. El sistema localiza el servicio en la configuración y asocia los archivos de request y response correspondientes.
+4. El servicio queda disponible en el puerto definido, listo para ser consumido por clientes externos.
+
+## Uso
+1. Ejecuta la aplicación desde consola o integrándola en otra aplicación mediante inyección de dependencias.
+2. Indica el **nombre del servicio** que deseas levantar.
+3. Una vez iniciado, podrás consumir los endpoints mockeados como si fueran servicios reales.
 
 ## Ventajas
-
-- **Flexibilidad:**  
-  Permite levantar múltiples servicios en diferentes puertos de forma dinámica.
-- **Extensibilidad:**  
-  Agrega nuevos servicios fácilmente editando archivos de configuración, sin necesidad de modificar el código fuente.
-- **Simplicidad:**  
-  Todos los cambios y gestiones se realizan desde archivos externos, eliminando la necesidad de alterar la base del código.
-- **Modularidad:**  
-  Gracias a la inyección de dependencias, la aplicación puede instanciarse como Singleton desde otros proyectos, facilitando la integración y garantizando un único punto de gestión de servicios mockeados.
-
----
-
-## Casos de Uso
-
-- Pruebas automatizadas y manuales en ausencia de servicios reales.
-- Simulación de distintos escenarios de negocio (errores, respuestas personalizadas, etc.).
-- Desarrollo simultáneo de frontend y backend desacoplado de servicios externos.
-
----
+- **Flexibilidad**: levantar múltiples servicios dinámicamente en distintos puertos.  
+- **Simplicidad**: no requiere recompilación, todo se maneja desde archivos externos.  
+- **Extensibilidad**: agregar nuevos servicios solo requiere editar los archivos de configuración.  
+- **Modularidad**: integración sencilla en otras aplicaciones usando inyección de dependencias.  
 
 ## Requisitos
-
-- .NET Core o .NET Framework (verificar versión específica en la documentación técnica)
-- Acceso a los archivos de configuración y de requests/responses en la estructura definida
-
----
-
-## Ejemplo de configuración
-
-```json
-{
-  "Servicios": [
-    {
-      "Nombre": "ServicioEjemplo",
-      "Tipo": "REST",
-      "Puerto": 8080,
-      "Url": "/api/ejemplo"
-    }
-  ]
-}
-```
-
----
+- .NET 6 o superior.  
+- Librería [WireMock.Net](https://github.com/WireMock-Net/WireMock.Net) (incluida vía NuGet).  
 
 ## Contribuciones
-
-Si deseas contribuir con nuevas funcionalidades, mejoras o correcciones, por favor crea un pull request o abre una issue en este repositorio.
+Si deseas extender la aplicación, agrega nuevos servicios en `services.json` junto con sus archivos de requests y responses.  
+No es necesario modificar la estructura base del proyecto.  
 
 ---
-
-## Licencia
-
-Este proyecto se distribuye bajo la licencia MIT.
