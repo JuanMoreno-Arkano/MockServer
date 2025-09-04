@@ -1,6 +1,6 @@
 POC Mock Servicios
 
-    Mock Servicios es una aplicación independiente en .NET que permite simular (mockear) servicios WCF y REST, incluyendo operaciones CRUD. Su propósito es facilitar las pruebas y el desarrollo en entornos donde los servicios reales no están disponibles o donde se busca        desacoplar las dependencias externas.
+    Mock Servicios es una aplicación independiente en .NET que permite simular (mockear) servicios WCF y REST, incluyendo operaciones CRUD. Su propósito es facilitar las pruebas y el desarrollo en entornos donde los              servicios reales no están disponibles o donde se busca desacoplar las dependencias externas.
 
 Cómo funciona
     
